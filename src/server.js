@@ -8,12 +8,14 @@ const hostname = process.env.HOSTNAME;
 
 //config template engine
 app.set('views', path.join(__dirname,'views'));
-app.set('view engine', 'ejs')
+app.set('view engine', 'ejs');
 
+// config static file
+app.use(express.static(path.join(__dirname, 'public')));
 //khai báo routes
 //req (request), res(response) là 2 object trong môi trường Node.js
 app.get('/', (req, res) => {
- res.send('Hello World! xae ')
+ res.send('Hello World! xai  nodemon ne')
 })
 
 app.get('/hehe', (req, res) => {
@@ -28,3 +30,5 @@ app.get('/abc', (req, res) => {
 app.listen(port, () => {
  console.log(`Example app listening on port ${port}`)
 })
+
+// nodemon tu khoi dong lai sv khi thay doi code
