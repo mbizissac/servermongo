@@ -13,7 +13,7 @@ const hostname = process.env.HOSTNAME;
 configViewEngine(app);
 
 //khai báo routes
-app.use(webRoutes);
+app.use('/',webRoutes); //app.use('/test',webRoutes);
 //req (request), res(response) là 2 object trong môi trường Node.js
 
 //run server trên port đã khởi tạo trước đấy
