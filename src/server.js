@@ -18,9 +18,22 @@ app.use('/',webRoutes); //app.use('/test',webRoutes);
 
 //req (request), res(response) là 2 object trong môi trường Node.js
 
-// test connection
-connection();   
 
+//seft running function
+(async() => {
+    // anonymous function   
+    try {
+       // test connection
+      await connection();   
+      app.listen(port, hostname, () => {
+          console.log(`Back end app listening at http://${hostname}:${port}`)
+      })
+
+    } catch (error) {
+        console.log("Error connect db",error); 
+        
+    }
+})();
 //run server trên port đã khởi tạo trước đấy
 //nạp các thông tin khai báo ở trên rồi chạy (ví dụ như nạp routes)
 app.listen(port, () => {
