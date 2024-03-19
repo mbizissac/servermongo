@@ -4,6 +4,7 @@ const path = require('path'); //commonjs
 const configViewEngine = require('./config/viewEngine');
 const webRoutes = require('./routes/web');
 const connection = require('./config/database');
+const mongoose = require('mongoose');
 
 
 const app = express() // tạo express application
@@ -16,8 +17,16 @@ configViewEngine(app);
 //khai báo routes
 app.use('/',webRoutes); //app.use('/test',webRoutes);
 
-//req (request), res(response) là 2 object trong môi trường Node.js
+// kittySchema 
+const kittySchema = new mongoose.Schema({
+    name: String
+  });
 
+  const Kitten = mongoose.model('Kitten', kittySchema);
+
+  const cat = new Kitten({ name: 'HeHe it cat' });
+
+  cat.save();
 
 //seft running function
 (async() => {
