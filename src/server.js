@@ -3,6 +3,7 @@ const express = require('express') //import express
 const path = require('path'); //commonjs
 const configViewEngine = require('./config/viewEngine');
 const webRoutes = require('./routes/web');
+const connection = require('./config/database');
 
 
 const app = express() // tạo express application
@@ -16,6 +17,9 @@ configViewEngine(app);
 app.use('/',webRoutes); //app.use('/test',webRoutes);
 
 //req (request), res(response) là 2 object trong môi trường Node.js
+
+// test connection
+connection();   
 
 //run server trên port đã khởi tạo trước đấy
 //nạp các thông tin khai báo ở trên rồi chạy (ví dụ như nạp routes)
