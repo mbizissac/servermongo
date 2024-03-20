@@ -4,12 +4,17 @@ const path = require('path'); //commonjs
 const configViewEngine = require('./config/viewEngine');
 const webRoutes = require('./routes/web');
 const connection = require('./config/database');
-const Kitten = require('./models/Kitten');
 
 
 const app = express() // tạo express application
 const port = process.env.PORT||8888; // init port
 const hostname = process.env.HOSTNAME;
+
+
+//config reg.body
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 
 // config template engine
 configViewEngine(app);
@@ -18,8 +23,7 @@ configViewEngine(app);
 app.use('/',webRoutes); //app.use('/test',webRoutes);
 
 
-const cat = new Kitten({ name: 'HeHe it cat abcd model' });
-cat.save();
+
 
 // ket noi toi database truoc , check database truoc khi chay may chu
 //seft running function
