@@ -4,7 +4,7 @@ const path = require('path'); //commonjs
 const configViewEngine = require('./config/viewEngine');
 const webRoutes = require('./routes/web');
 const connection = require('./config/database');
-const mongoose = require('mongoose');
+const Kitten = require('./models/Kitten');
 
 
 const app = express() // tạo express application
@@ -17,17 +17,11 @@ configViewEngine(app);
 //khai báo routes
 app.use('/',webRoutes); //app.use('/test',webRoutes);
 
-// kittySchema 
-const kittySchema = new mongoose.Schema({
-    name: String
-  });
 
-  const Kitten = mongoose.model('Kitten', kittySchema);
+const cat = new Kitten({ name: 'HeHe it cat abcd model' });
+cat.save();
 
-  const cat = new Kitten({ name: 'HeHe it cat' });
-
-  cat.save();
-
+// ket noi toi database truoc , check database truoc khi chay may chu
 //seft running function
 (async() => {
     // anonymous function   
