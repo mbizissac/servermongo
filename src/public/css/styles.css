@@ -34,4 +34,7 @@ ul {
 .input-group {
     padding: 10px;
 }
+.d-none{
+    display: none;
+}
 }
