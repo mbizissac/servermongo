@@ -14,6 +14,10 @@ const getABC = (req, res) => {
 
 const getHehe = (req, res) => {
     res.render('sample.ejs');
+    //viet ham json parse
+    
+
+
 }
 
 const postCreateUser = async(req, res) => {

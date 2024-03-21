@@ -1,8 +1,9 @@
 require('dotenv').config();
 const express = require('express') //import express
-const path = require('path'); //commonjs
+//const path = require('path'); //commonjs
 const configViewEngine = require('./config/viewEngine');
 const webRoutes = require('./routes/web');
+const apiRoutes =  require('./routes/api');
 const connection = require('./config/database');
 
 
@@ -21,6 +22,7 @@ configViewEngine(app);
 
 //khai báo routes
 app.use('/',webRoutes); //app.use('/test',webRoutes);
+app.use('/v1/api/',apiRoutes); 
 
 
 
