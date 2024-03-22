@@ -1,20 +1,20 @@
 const express = require('express');
-const routerAPI = express.Router();
+const router = express.Router();
+const apiController = require('../controllers/apiController');
+const { getUsersAPI, postCreateUserAPI, putpdateUserAPI, deleteUserAPI } = apiController;
 
-const { getUsersAPI } = require('../controllers/apiController');
 
-routerAPI.get('/', (req, res) => {
-    res.send('Hello API');
-})
+router.get('/users', getUsersAPI);
 
-routerAPI.get('/abc', (req, res) => {
-    res.status(200).json({
-        data:"abc day nem"
-    })
-})
+router.post('/users', postCreateUserAPI);
 
-routerAPI.get('/users', getUsersAPI)
+router.put('/users', putpdateUserAPI);
 
-module.exports = routerAPI;
+router.delete('/users', deleteUserAPI);
+
+module.exports = router;
+
+
+ 
 
 
