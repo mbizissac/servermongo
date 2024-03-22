@@ -6,6 +6,8 @@ const webRoutes = require('./routes/web');
 const apiRoutes =  require('./routes/api');
 const connection = require('./config/database');
 
+const { MongoClient } = require('mongodb');
+
 
 const app = express() // tạo express application
 const port = process.env.PORT||8888; // init port
@@ -25,6 +27,9 @@ app.use('/',webRoutes); //app.use('/test',webRoutes);
 app.use('/v1/api/',apiRoutes); 
 
 
+///mongodb driver
+
+
 
 
 // ket noi toi database truoc , check database truoc khi chay may chu
@@ -32,8 +37,33 @@ app.use('/v1/api/',apiRoutes);
 (async() => {
     // anonymous function   
     try {
-       // test connection
-      await connection();   
+
+        //using mongoose
+        await connection();   
+
+        //>>>>>>
+        // using mongodb driver
+        //user env DB_HOST
+        const url = 'mongodb://root:123456@localhost:27018/?authSource=admin';
+        const client = new MongoClient(url);
+        
+        // Database Name
+        const dbName = process.env.DB_NAME;
+        
+          // Use connect method to connect to the server
+          await client.connect();
+          console.log('Connected successfully to server');
+          const db = client.db(dbName);
+          const collection = db.collection('cuccus');
+          //collection.insertOne({ name: 'MongoDB new xxx ' });
+          // the following code examples can be pasted here...
+          let a = await collection.findOne({ name: 'MongoDB new xxx ' });
+          console.log("finding" , a);
+              
+
+
+        //<<<<<
+
       app.listen(port, hostname, () => {
           console.log(`Back end app listening at http://${hostname}:${port}`)
       })
